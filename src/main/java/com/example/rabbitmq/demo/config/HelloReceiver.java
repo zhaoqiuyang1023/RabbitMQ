@@ -1,5 +1,6 @@
 package com.example.rabbitmq.demo.config;
 
+import com.example.rabbitmq.demo.bean.MailDTO;
 import com.example.rabbitmq.demo.bean.User;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
@@ -19,6 +20,11 @@ public class HelloReceiver {
     @RabbitListener(queues = "User")
     @RabbitHandler
     public void process(User user) {
+        System.out.println("接收者 : " + user);
+    }
+    @RabbitListener(queues = "Mail")
+    @RabbitHandler
+    public void process(MailDTO user) {
         System.out.println("接收者 : " + user);
     }
 }

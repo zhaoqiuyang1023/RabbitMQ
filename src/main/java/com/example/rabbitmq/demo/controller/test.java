@@ -1,6 +1,7 @@
 package com.example.rabbitmq.demo.controller;
 
 
+import com.example.rabbitmq.demo.bean.User;
 import com.example.rabbitmq.demo.config.HelloSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,11 @@ public class test {
     private HelloSender helloSender;
 
     @RequestMapping("/text")
-    public void sendMessage(int i) {
-        helloSender.send(i);
+    public void sendMessage() {
+        User user=new User();
+        user.setId(1);
+        user.setName("小明");
+        user.setPassword("123");
+        helloSender.send(user);
     }
 }

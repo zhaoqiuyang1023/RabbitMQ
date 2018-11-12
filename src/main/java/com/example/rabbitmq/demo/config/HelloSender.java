@@ -1,4 +1,5 @@
 package com.example.rabbitmq.demo.config;
+import com.example.rabbitmq.demo.bean.MailDTO;
 import com.example.rabbitmq.demo.bean.User;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,12 @@ public class HelloSender {
         rabbitTemplate.convertAndSend("hello", message+i);
     }
 
-    public void send_Object(User i) {
+    public void send(User i) {
         System.out.println("发送者"+i.toString()); //发送的对象必须序列化
         rabbitTemplate.convertAndSend("User",i);
+    }
+    public void send(MailDTO i) {
+        System.out.println("发送者"+i.toString()); //发送的对象必须序列化
+        rabbitTemplate.convertAndSend("MailDTO",i);
     }
 }
